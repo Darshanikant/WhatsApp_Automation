@@ -12,7 +12,7 @@ st.set_page_config(page_title="WhatsApp Automation",
 st.markdown("""
     <style>
         .stApp {
-            background-image: url("https://overbr.com.br/wp-content/uploads/2018/05/WhatsApp-Business.jpg");
+            background-image: url("https://overbr.com.br/wp-content/uploads/2018/05/WhatsApp-Business.jpg"); # add own url
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
