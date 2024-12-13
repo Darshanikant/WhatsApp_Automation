@@ -60,34 +60,20 @@ def send_message(phone, message, hour, minute):
     logout()
 
 # Function to send an image and optional additional text, then logout
+
 def send_image(recipient, image_file, caption, additional_text):
-    # Save uploaded image temporarily
-    if image_file is not None:
+    if image_file:
         temp_image_path = os.path.join("temp", image_file.name)
         os.makedirs("temp", exist_ok=True)
         with open(temp_image_path, "wb") as f:
             f.write(image_file.getbuffer())
-        
-        # Send the image with caption
         kit.sendwhats_image(recipient, temp_image_path, caption)
-        st.success("✅ Image sent successfully!")
-        
-        # Adding a small delay before sending additional text
-        if additional_text:
-            time.sleep(3)  # Wait for WhatsApp to process the image
-            # Using pyautogui to send the additional text
-            pyautogui.write(additional_text)  # Type the additional text
-            pyautogui.press('enter')  # Send the text message
-            st.success("📜 Additional text sent successfully!")
-        
-        # Remove the temporary image file
+        st.success("Image sent successfully!")
+        st.info("Additional text cannot be sent in this environment.")
         os.remove(temp_image_path)
-        st.info("🗑 Temporary file deleted.")
-        
-        # Logout
-        logout()
+        st.info("Temporary file deleted.")
     else:
-        st.error("❌ No image file uploaded!")
+        st.error("No image file uploaded!")
 
 # Function to send a group message and logout
 def send_group_message(group_id, message, hour, minute):
